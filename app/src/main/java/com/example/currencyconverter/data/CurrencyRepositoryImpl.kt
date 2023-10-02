@@ -36,8 +36,11 @@ class CurrencyRepositoryImpl @Inject constructor(
 
     override suspend fun getCurrencies(): Flow<NetworkResult<Any>> {
 
-        if (Utils.shouldUpdateData(preferences.lastUpdateTime) || preferences.currencies == null) {
-            preferences.lastUpdateTime = System.currentTimeMillis()
+        if ((Utils.shouldUpdateData(preferences.lastUpdateTime) || preferences.currencies == null)&& Utils.hasInternetConnection(
+                application
+            )) {
+            Log.e("Repository","................from remote...................")
+          //  preferences.lastUpdateTime = System.currentTimeMillis()
             return flow<NetworkResult<Any>> {
                 emit(safeApiCall { remoteCurrencyDataSource.getCurrencies() })
             }.flowOn(Dispatchers.IO)
@@ -59,10 +62,11 @@ class CurrencyRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getCurrenciesWithExchangeRate(): Flow<NetworkResult<Any>> {
-        if ((Utils.shouldUpdateData(preferences.lastUpdateTime) || preferences.currencies == null) && Utils.hasInternetConnection(
+        if ((Utils.shouldUpdateData(preferences.lastUpdateTime) || preferences.currenciesWithExchangeRate == null) && Utils.hasInternetConnection(
                 application
             )
         ) {
+            Log.e("Repository","................from remote...................")
             preferences.lastUpdateTime = System.currentTimeMillis()
             return flow<NetworkResult<Any>> {
                 emit(safeApiCall { remoteCurrencyDataSource.getCurrenciesWithExchangeRate() })
