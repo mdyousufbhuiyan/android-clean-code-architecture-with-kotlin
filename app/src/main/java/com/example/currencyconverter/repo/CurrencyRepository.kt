@@ -1,4 +1,4 @@
-package com.example.currencyconverter.data
+package com.example.currencyconverter.repo
 
 import com.example.currencyconverter.data.remote.RemoteCurrencyDataSource
 import com.example.currencyconverter.model.BaseApiResponse

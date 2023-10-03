@@ -1,8 +1,9 @@
-package com.example.currencyconverter.data
+package com.example.currencyconverter.repo
 
 import android.app.Application
 import android.content.SharedPreferences
 import android.util.Log
+import com.example.currencyconverter.data.PreferenceHelper
 import com.example.currencyconverter.data.PreferenceHelper.currencies
 import com.example.currencyconverter.data.PreferenceHelper.currenciesWithExchangeRate
 import com.example.currencyconverter.data.PreferenceHelper.lastUpdateTime
@@ -45,6 +46,7 @@ class CurrencyRepositoryImpl @Inject constructor(
                 emit(safeApiCall { remoteCurrencyDataSource.getCurrencies() })
             }.flowOn(Dispatchers.IO)
         } else {
+            Log.e("Repository","................from offline...................")
             return if (preferences.currencies != null) {
                 val currencyResponse: LinkedTreeMap<Any, Any> = gson.fromJson(
                     preferences.currencies,
@@ -72,6 +74,7 @@ class CurrencyRepositoryImpl @Inject constructor(
                 emit(safeApiCall { remoteCurrencyDataSource.getCurrenciesWithExchangeRate() })
             }.flowOn(Dispatchers.IO)
         } else {
+            Log.e("Repository","................from offline...................")
             return if (preferences.currenciesWithExchangeRate != null) {
                 val currenciesWithExchangeRate: LinkedTreeMap<Any, Any> = gson.fromJson(
                     preferences.currenciesWithExchangeRate,

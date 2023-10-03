@@ -7,12 +7,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import com.example.currencyconverter.model.BaseApiResponse
+import com.example.currencyconverter.repo.CurrencyRepository
 import com.example.currencyconverter.utils.Utils
-import com.example.currencyconverter.utils.Utils.readJsonAsset
-import kotlinx.coroutines.withContext
-import okhttp3.ResponseBody.Companion.toResponseBody
-import retrofit2.Response
-import org.junit.Test
 
 class FakeCurrencyRepositoryImplTest : BaseApiResponse(), CurrencyRepository {
     var isNetworkError = false

@@ -1,8 +1,8 @@
 package com.example.currencyconverter.di
 
 import android.app.Application
-import com.example.currencyconverter.data.CurrencyRepository
-import com.example.currencyconverter.data.CurrencyRepositoryImpl
+import com.example.currencyconverter.repo.CurrencyRepository
+import com.example.currencyconverter.repo.CurrencyRepositoryImpl
 import com.example.currencyconverter.data.remote.CurrencyConverterService
 import com.example.currencyconverter.data.remote.RemoteCurrencyDataSource
 import com.example.currencyconverter.utils.Constants.Companion.BASE_URL
